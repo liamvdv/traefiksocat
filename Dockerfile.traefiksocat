@@ -1,0 +1,11 @@
+# https://github.com/traefik/traefik-library-image/blob/71a4619eca4f504c7034876c171626c1755944f3/alpine/Dockerfile
+FROM traefik:v2.10
+
+# Install socat
+RUN apk --no-cache add socat
+
+# Add custom entrypoint script
+ADD entrypoint.traefiksocat.sh /entrypoint.traefiksocat.sh
+RUN chmod +x /entrypoint.traefiksocat.sh
+
+ENTRYPOINT ["/entrypoint.traefiksocat.sh"]
